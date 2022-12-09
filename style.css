@@ -1,0 +1,20 @@
+div.game {
+    display: grid;
+    grid-template-columns: repeat(4, .7fr);
+    grid-template-rows: repeat(4, .7fr);
+  }
+game img{
+    object-fit: cover;
+    width: .4fr;
+    height: .4fr;
+  }
+#quip{
+    color: #ccc;
+    background-color: black;
+    margin: 0px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+  }

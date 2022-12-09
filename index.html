@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    function init(){
+        c1=document.getElementById("c1");
+        f1=document.getElementById("f1");
+        k1=document.getElementById("k1");
+        j1=document.getElementById("j1");
+        m1=document.getElementById("m1");
+        p1=document.getElementById("p1");
+        r1=document.getElementById("r1");
+        t1=document.getElementById("t1");
+        c2=document.getElementById("c2");
+        f2=document.getElementById("f2");
+        k2=document.getElementById("k2");
+        j2=document.getElementById("j2");
+        m2=document.getElementById("m2");
+        p2=document.getElementById("p2");
+        r2=document.getElementById("r2");
+        t2=document.getElementById("t2");
+        counter=0;
+        document.getElementById("score").innerHTML="Score: " + counter;
+        picked=[];
+        revealed=0;
+        allCards=[c1,f1,k1,j1,m1,p1,r1,t1,c2,f2,k2,j2,m2,p2,r2,t2];
+        console.log(allCards[3].id)
+    }
+    function clicked(name){
+      
+        counter++;
+        document.getElementById("score").innerHTML="Score: " + counter;
+        card=document.getElementById(name);
+        picked.push(card);
+        console.log(picked)
+        card.src=(name.charAt(0))+".jpg";
+        letter=name.charAt(0);
+        number=name.charAt(1);
+        allCards.forEach(element => {
+            console.log(element.id);
+        });
+        updateQuip();
+        if(counter%2==0){
+            if(picked[0].id.charAt(0)==picked[1].id.charAt(0)){
+                picked=[];
+                revealed+=2;
+            }
+            else{
+                setTimeout(function(){clickedThenReset();}, 1000);
+            }
+        }
+    }
+    function clickedThenReset(){
+        picked.forEach(element => {
+                element.src="hidden.png";
+            });
+            picked=[];
+    }
+    function updateQuip(){
+        quip=document.getElementById("quip");
+        if(counter==0){
+            quip.innerHTML="Goodluck!";
+        }
+        if(counter==1){
+            quip.innerHTML="Off to a solid start!";
+        }if(counter==2){
+            quip.innerHTML="If you got that one it was all luck";
+        }if(counter==16){
+            quip.innerHTML="If you haven't won by now you're not a perfectionist";
+        }if(counter==16 && revealed==16){
+            quip.innerHTML="You won in the least amount of moves possible, fishy...";
+        }
+        if(counter==6){
+            quip.innerHTML="Keep going!";
+        }if(counter==5){
+            quip.innerHTML="This game isn't so fun anymore is it";
+        }if(counter==20){
+            quip.innerHTML="Dang, you've really been playing for a while";
+        }
+        if(counter==10){
+            quip.innerHTML="I guess you could say this game is 10/10";
+        }if(counter==9){
+            quip.innerHTML="I hope this earns %100";
+        }if(counter==30){
+            quip.innerHTML="Honestly if I were you I'd giveup";
+        }
+        if(counter==14){
+            quip.innerHTML="Hmmm, memory must not be your strong suit";
+        }if(counter==15){
+            quip.innerHTML="Just kidding it's not even possible to have won yet";
+        }if(counter==3){
+            quip.innerHTML="ARE YOU EXCITED TO PLAY THIS GAME OR WHAT!!!!";
+        }if(counter==4){
+            quip.innerHTML="If you said yes, you shouldn't of. This game is not exciting";
+        }if(counter==7){
+            quip.innerHTML="I'm getting tired of scoring this, try n' hurry it up";
+        }if(counter==8){
+            quip.innerHTML="I apoligize, my therapist told me to be more kind to others <br>but my ram is overheating from having to store such a high score";
+        }
+        if(counter==11){
+            quip.innerHTML="Huh, 11 is the same forwards and backwards";
+        }if(counter==12){
+            quip.innerHTML="(hint)If you hit reset you can use what you already memorized to get a lower score";
+        }
+        if(counter==22){
+            quip.innerHTML="I've become a monk and have taken a vow of silence.";
+        }
+        if(counter==24){
+            quip.innerHTML="ACHOOO!";
+        }
+        if(counter==25){
+            quip.innerHTML="*Bless you!* Hey, thanks!";
+        }if(counter==26){
+            quip.innerHTML="Oh shoot, I wasn't supposed to say that";
+        }
+        if(counter==31){
+            quip.innerHTML="I'm not giving you anymore encouragement until you hit 50 points";
+        }
+        if(counter==50){
+            quip.innerHTML="If you made it this far, you're memory is severely limited";
+        }
+        if(counter==52){
+            quip.innerHTML="That's it, I'm never SPEAKING TO YOU AGAIN!!!!";
+        }
+        
+ 
+    }
+    function sleep(milliseconds) {
+      return new Promise(resolve => setTimeout(resolve, milliseconds));
+   }
+   function reset(){
+    init();
+    document.getElementById("quip").innerHTML="Uh oh... the cards don't get randomized!";
+    allCards.forEach(element => {
+                element.src="hidden.png";
+            });
+            picked=[];
+   }
+
+</script>
+<body onload="init();">
+    <h1>Welcome to RGB Land!!!</h1>
+    <h3>Every programmers favorite place!</h3>
+    <h2 id="score">Score: 0</h2>
+    <h2 id="quip">I recommend pressing ctrl minus a couple times...</h2>
+    <div class="game">
+        <img onclick="clicked('c1');" id="c1" src="hidden.png">
+        <img onclick="clicked('f1');" id="f1" src="hidden.png">
+        <img onclick="clicked('k1');" id="k1" src="hidden.png">
+        <img onclick="clicked('j1');" id="j1" src="hidden.png">
+        <img onclick="clicked('m1');" id="m1" src="hidden.png">
+        <img onclick="clicked('p1');" id="p1" src="hidden.png">
+        <img onclick="clicked('r1');" id="r1" src="hidden.png">
+        <img onclick="clicked('t1');" id="t1" src="hidden.png">
+        <img onclick="clicked('c2');" id="c2" src="hidden.png">
+        <img onclick="clicked('f2');" id="f2" src="hidden.png">
+        <img onclick="clicked('k2');" id="k2" src="hidden.png">
+        <img onclick="clicked('j2');" id="j2" src="hidden.png">
+        <img onclick="clicked('m2');" id="m2" src="hidden.png">
+        <img onclick="clicked('p2');" id="p2" src="hidden.png">
+        <img onclick="clicked('r2');" id="r2" src="hidden.png">
+        <img onclick="clicked('t2');" id="t2" src="hidden.png">
+    </div>
+    <button onclick="reset();" id="reset">Reset</button>
+</body>
+</html>
